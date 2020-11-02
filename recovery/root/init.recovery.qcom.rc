@@ -27,6 +27,7 @@
 #
 
 import /init.recovery.qcom_decrypt.rc
+import /init.recovery.logd.rc
 
 on early-init
 	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/metadata /metadata ro wait
