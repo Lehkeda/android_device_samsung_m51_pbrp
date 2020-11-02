@@ -20,7 +20,6 @@ DEVICE_PATH := device/samsung/m51
 PRODUCT_PLATFORM := sm6150
 
 # Define Dynamic Partition support
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
 # fastbootd

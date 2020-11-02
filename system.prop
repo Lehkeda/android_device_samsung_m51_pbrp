@@ -80,3 +80,5 @@ dalvik.vm.minidebuginfo=true
 dalvik.vm.dex2oat-minidebuginfo=true
 
 persist.sys.usb.config=mtp
+
+ro.boot.dynamic_partitions = true
