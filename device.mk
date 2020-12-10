@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
 	init.samsung.bsp.rc \
 	init.samsung.rc \
 	init.target.rc \
-	recovery.fstab \
 	init.recovery.qcom.rc 
     
 
