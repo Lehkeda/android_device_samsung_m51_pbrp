@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk) -- only for 64bit phones
 
 # Inherit from wasabi device makefile
 $(call inherit-product, device/samsung/m51/device.mk)
