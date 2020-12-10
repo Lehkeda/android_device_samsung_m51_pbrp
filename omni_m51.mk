@@ -15,9 +15,9 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk) -- only for 64bit phones
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
-# Inherit from wasabi device makefile
+# Inherit from m51 device makefile
 $(call inherit-product, device/samsung/m51/device.mk)
 
 $(call inherit-product, vendor/pb/config/common.mk)
