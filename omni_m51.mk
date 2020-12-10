@@ -20,16 +20,6 @@ $(call inherit-product, device/samasung/m51/device.mk)
 
 $(call inherit-product, vendor/pb/config/common.mk)
 
-# Inherit RR stuff
-#$(call inherit-product, vendor/rr/config/common_full_phone.mk)
-#$(call inherit-product, vendor/rr/config/data_only.mk)
-
-# RR Wallpapers
-#BUILD_RR_WALLPAPERS := true
-
-# RR build type
-#RR_BUILDTYPE := Official
-
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := omni_m51
 PRODUCT_DEVICE := m51
@@ -43,5 +33,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=m51 \
     PRODUCT_NAME=m51 \
     PRIVATE_BUILD_DESC="m51nsxx-user 10 QP1A.190711.020 M515FXXU1BTK4 release-keys"
-
-PRODUCT_GMS_CLIENTID_BASE := android-qcom
