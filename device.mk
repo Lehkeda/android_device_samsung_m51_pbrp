@@ -16,9 +16,6 @@
 
 DEVICE_PATH := device/samsung/m51
 
-# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
 # Define Dynamic Partition support
 PRODUCT_TARGET_VNDK_VERSION := 29
 PRODUCT_SHIPPING_API_LEVEL := 29
@@ -28,10 +25,6 @@ PRODUCT_BUILD_SUPER_PARTITION := false
 # A/B
 AB_OTA_UPDATER := false
 
-# Audio
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
-	
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := xxxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
