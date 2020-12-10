@@ -16,7 +16,7 @@
 
 
 # Inherit from wasabi device makefile
-$(call inherit-product, device/samasung/m51/device.mk)
+$(call inherit-product, device/samsung/m51/device.mk)
 
 $(call inherit-product, vendor/pb/config/common.mk)
 
