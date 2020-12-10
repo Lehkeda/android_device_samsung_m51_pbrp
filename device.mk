@@ -43,14 +43,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
-
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0_system \
@@ -79,24 +71,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
 	$(LOCAL_PATH)/configs/idc/uinput-goodix.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-goodix.idc \
     $(DEVICE_PATH)/configs/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/gpio-keys.kl 
-
-# NFC
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    com.gsma.services.nfc \
-    com.nxp.nfc.nq \
-    libnqnfc_nci_jni \
-    nfc_nci.nqx.default.hw \
-    NQNfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
-    Tag \
-    vendor.nxp.hardware.nfc@1.2-service
 	
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(DEVICE_PATH)/overlay
-
 # Sensor
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
@@ -111,15 +86,3 @@ PRODUCT_COPY_FILES += \
 
 # Properties
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-
-# Open GAPPs
-#GAPPS_VARIANT  := nano
-#$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
-
-# Offline charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    product_charger_res_images
-	
-# Inherit from sm6150-common
-$(call inherit-product, device/samsung/sm6150-common/sm6150.mk)	

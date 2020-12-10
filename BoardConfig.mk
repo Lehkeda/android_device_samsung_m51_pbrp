@@ -13,11 +13,75 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 DEVICE_PATH := device/samsung/m51
 
-# Inherit from sm6150-common
--include device/samsung/sm6150-common/BoardConfigCommon.mk
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a76
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a9
+
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := sm6150
+TARGET_NO_BOOTLOADER := true
+
+# Android Verified Boot
+BOARD_AVB_ENABLE := true
+BOARD_AVB_VBMETA_ARGS=--padding_size 4096
+BOARD_AVB_VBMETA_KEY_PATH=external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_VBMETA_SYSTEM := system
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
+BOARD_AVB_VBMETA_SYSTEM_ARGS=--padding_size 4096 --rollback_index 1604188800
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
+BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS=--rollback_index 1
+BOARD_AVB_PRODUCT_SERVICES_HASHTREE_ENABLE=true
+
+# Platform
+TARGET_BOARD_PLATFORM := sm6150
+
+# APEX
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+
+# Charger Mode
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
+# ConfigStore
+TARGET_HAS_HDR_DISPLAY := true
+TARGET_HAS_WIDE_COLOR_DISPLAY := true
+
+# Display
+TARGET_USES_DISPLAY_RENDER_INTENTS := true
+
+# DRM
+TARGET_ENABLE_MEDIADRM_64 := true
+
+# Graphics
+TARGET_USES_GRALLOC4 := true
+TARGET_USES_HWC2 := true
+TARGET_USES_ION := true
+
+# QCOM
+BOARD_USES_QCOM_HARDWARE := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := SM-M515F,SM-M515F/DSN
@@ -26,12 +90,7 @@ TARGET_OTA_ASSERT_DEVICE := SM-M515F,SM-M515F/DSN
 USE_XML_AUDIO_POLICY_CONF := 1
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := sm6150
 TARGET_NO_BOOTLOADER := true
-
-# HIDL
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=1 androidboot.usbcontroller=a600000.dwc3 firmware_class.path=/vendor/firmware_mnt/image nokaslr printk.devkmsg=on androidboot.selinux=permissive
@@ -76,6 +135,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BUILD_WITHOUT_VENDOR := true
 BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 2147483648
+TARGET_USERIMAGES_USE_F2FS := true
 
 # Partitions (Dynamic)
 BOARD_SUPER_BLOCK_DEVICES := super
@@ -99,18 +159,6 @@ TARGET_RECOVERY_UI_BLANK_UNBLANK_ON_INIT := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USES_MKE2FS := true
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 50
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
-
-# Sepolicy
-TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
-TARGET_HAS_FUSEBLK_SEPOLICY_ON_VENDOR := true
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR := $(DEVICE_PATH)/sepolicy/private
-# We have to skip checkpolicy because we have to re-define rild
-# in device system sepolicy to work around IMS issues.
-SELINUX_IGNORE_NEVERALLOWS := true
-
 
 # Treble
 BOARD_VNDK_VERSION := current

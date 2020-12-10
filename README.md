@@ -1,4 +1,4 @@
-Resurrection Remix device tree for the Samsung M51
+PBRP device tree for the Samsung M51
 =================================================
 
 | Basic                   | Spec Sheet                                                                                                                     |
