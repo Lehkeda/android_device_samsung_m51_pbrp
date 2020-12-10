@@ -17,27 +17,13 @@
 DEVICE_PATH := device/samsung/m51
 
 # Define Dynamic Partition support
-#PRODUCT_TARGET_VNDK_VERSION := 29
-#PRODUCT_SHIPPING_API_LEVEL := 29
+PRODUCT_TARGET_VNDK_VERSION := 29
+PRODUCT_SHIPPING_API_LEVEL := 29
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
 # A/B
 AB_OTA_UPDATER := false
-
-# Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := xxxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-	
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
-
-# HIDL
-PRODUCT_PACKAGES += \
-    android.hidl.base@1.0_system \
-    android.hidl.manager@1.0_system
-
   
 # Init
 PRODUCT_PACKAGES += \
@@ -55,24 +41,12 @@ PRODUCT_PACKAGES += \
 	init.recovery.qcom.rc 
     
 
-
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
 	$(LOCAL_PATH)/configs/idc/uinput-goodix.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-goodix.idc \
     $(DEVICE_PATH)/configs/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/gpio-keys.kl 
 	
-# Sensor
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
-
-# Trustonic TEE
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/public.libraries-trustonic.txt:$(TARGET_COPY_OUT_SYSTEM)/etc/public.libraries-trustonic.txt
-
-# Properties
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
