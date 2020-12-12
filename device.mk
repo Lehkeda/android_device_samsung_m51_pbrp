@@ -22,22 +22,5 @@ PRODUCT_SHIPPING_API_LEVEL := 29
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 
-# A/B
-AB_OTA_UPDATER := false
-  
-# Init
-PRODUCT_PACKAGES += \
-	fstab.qcom \
-	init.m51.rc \
-	init.m51nsxx.rc \
-	init.msm.usb.configfs.rc \
-	init.qcom.factory.rc \
-	init.qcom.rc \
-	init.qcom.usb.rc \
-	init.samsung.bsp.rc \
-	init.samsung.rc \
-	init.target.rc \
-	init.recovery.qcom.rc 	
-
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
