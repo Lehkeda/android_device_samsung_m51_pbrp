@@ -1,71 +1,35 @@
-# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted (subject to the limitations in the
-# disclaimer below) provided that the following conditions are met:
-#
-#    * Redistributions of source code must retain the above copyright
-#      notice, this list of conditions and the following disclaimer.
-#
-#    * Redistributions in binary form must reproduce the above
-#      copyright notice, this list of conditions and the following
-#      disclaimer in the documentation and/or other materials provided
-#      with the distribution.
-#
-#    * Neither the name of The Linux Foundation nor the names of its
-#      contributors may be used to endorse or promote products derived
-#      from this software without specific prior written permission.
-#
-# NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
-# GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
-# HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-# GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Android fstab file.
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # mount point       fstype    device                                                                flags
-/system 			ext4	system                                        		flags=backup=1;display="system";flashimg=1;logical;
-/system_image       emmc    system                                              flags=display="System image";backup=1;flashimg=1;logical;
-/vendor 			ext4	vendor                                              flags=backup=1;display="vendor";flashimg=1
-/vendor_image       emmc    vendor                                              flags=display="Vendor image";backup=1;flashimg=1;logical;
-/odm 				ext4	odm                                                 flags=backup=1;display="odm";flashimg=1
-/product 			ext4	product                                             flags=backup=1;display="product";flashimg=1
-/boot				emmc	/dev/block/bootdevice/by-name/boot                  flags=backup=1;display="Boot";flashimg=1
-/recovery 			emmc	/dev/block/bootdevice/by-name/recovery              flags=display="Recovery"
-/metadata 			ext4	/dev/block/bootdevice/by-name/metadata              flags=backup=1;display="Metadata"
-/data	 			f2fs	/dev/block/bootdevice/by-name/userdata	     		flags=encryptable=footer
-/cache				ext4	/dev/block/bootdevice/by-name/cache                 flags=backup=1;wipeingui;wipeduringfactoryreset
-/sdcard				sdfat	/dev/block/mmcblk0p1                                flags=encryptable;display="sdcard"
-/efs 				ext4	/dev/block/bootdevice/by-name/sec_efs               flags=backup=1;display="efs"
-/sec_efs			ext4	/dev/block/bootdevice/by-name/sec_efs               flags=backup=1;display="sec_efs"
-/carrier  			ext4	/dev/block/bootdevice/by-name/carrier               flags=backup=1;display="carrier"
-/preload 			ext4	/dev/block/bootdevice/by-name/hidden                flags=backup=1;display="preload"
+/super    			ext4    /dev/block/by-name/super         		flags=backup=0;display="super";
+/super_image     	emmc    /dev/block/by-name/super        		flags=backup=1;flashimg=1;
+/system_root		ext4	/dev/block/mapper/system                flags=backup=0;display="system";subpartitionof=/super;
+/system_image 		emmc	/dev/block/mapper/system                flags=backup=1;flashimg=1;subpartitionof=/super_image;
+/vendor 			ext4	/dev/block/mapper/vendor                flags=backup=0;display="vendor";subpartitionof=/super;
+/vendor_image   	emmc    /dev/block/mapper/vendor         		flags=backup=1;flashimg=1;subpartitionof=/super_image;
+/odm 				ext4	/dev/block/mapper/odm                   flags=backup=0;display="odm";subpartitionof=/super;
+/odm_image			emmc	/dev/block/mapper/odm                   flags=backup=1;flashimg=1;subpartitionof=/super_image;
+/product 			ext4	/dev/block/mapper/product               flags=backup=0;display="Product";subpartitionof=/super;
+/product_image  	emmc    /dev/block/mapper/product        		flags=backup=1;flashimg;subpartitionof=/super_image;
 
-# FOTA
-/modem  			emmc	/dev/block/bootdevice/by-name/apnhlos               flags=backup=1;display="apnhlos";flashimg=1
-/mdm 				emmc	/dev/block/bootdevice/by-name/modem                 flags=backup=1;display="modem";flashimg=1
-/dsp 				emmc	/dev/block/bootdevice/by-name/dsp                   flags=backup=1;display="dsp"
+/boot				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/boot                 flags=backup=1;display="boot";flashimg=1
+/recovery 			emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/recovery              flags=backup=1;display="recovery";flashimg=1
+#/metadata 			ext4	/dev/block/platform/soc/1d84000.ufshc/by-name/metadata              flags=backup=1;display="Metadata"
+/data	 			f2fs	/dev/block/platform/soc/1d84000.ufshc/by-name/userdata	     		flags=encryptable=footer;length=-32768;fileencryption=ice:aes-256-cts
+/cache				ext4	/dev/block/platform/soc/1d84000.ufshc/by-name/cache                 flags=wipeingui;wipeduringfactoryreset
 
 # Add misc for GOTA
-/misc  				emmc	/dev/block/bootdevice/by-name/misc                  flags=backup=1;display="misc"  
+/misc  				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/misc                  flags=backup=1;display="misc"  
 
 #Auto-generated code by FOTA Portal
-/dtbo 				emmc	/dev/block/bootdevice/by-name/dtbo        		    flags=backup=1;display="Dtbo";flashimg=1
-/prism 				ext4	/dev/block/bootdevice/by-name/prism       		    flags=backup=1;display="prism"
-/optics				ext4	/dev/block/bootdevice/by-name/optics      		    flags=backup=1;display="optics"
-/vbmeta_samsung		emmc	/dev/block/bootdevice/by-name/vbmeta_samsung		flags=backup=1;display="Vbmeta_samsung";flashimg=1
+/dtbo 				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/dtbo        		    flags=backup=1;display="Dtbo";flashimg=1
+/vbmeta				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/vbmeta		flags=backup=1;display="vbmeta";flashimg=1
+/vbmeta_samsung		emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/vbmeta_samsung		flags=backup=1;display="vbmeta samsung";flashimg=1
 
-/external_sd 	 	vfat	/devices/platform/soc/8804000.sdhci/mmc_host*       flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
-/usb_otg			auto	/devices/platform/soc/a600000.ssusb/a600000.dwc3/xhci-hcd.0.auto*              flags=display="usb_otg";storage;wipeingui;removable;fsflags="utf8"
+/external_sd 	 	auto	/dev/block/platform/soc/8804000.sdhci/mmcblk0p1       flags=display="external_sd";storage;wipeingui;removable;
+/usb_otg			auto	/dev/block/platform/soc/a600000.ssusb/a600000.dwc3/xhci-hcd.0.auto/sde1              flags=display="usb_otg";storage;wipeingui;removable;
+
 
