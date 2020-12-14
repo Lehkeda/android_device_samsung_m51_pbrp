@@ -182,6 +182,7 @@ TW_DELAY_TOUCH_INIT_MS := 2000
 TW_SKIP_COMPATIBILITY_CHECK := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_HAS_DOWNLOAD_MODE := true
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone18/temp"
 
 MAINTAINER := github.com/LehKeda
 PB_DISABLE_DEFAULT_DM_VERITY := true
