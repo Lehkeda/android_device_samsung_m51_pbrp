@@ -28,6 +28,13 @@
 
 import /init.recovery.qcom_decrypt.rc
 
+on early-init
+	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/metadata /metadata ro wait
+	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/persist /mnt/vendor/persist ro wait
+	mount vfat /dev/block/platform/soc/1d84000.ufshc/by-name/apnhlos /vendor/firmware_mnt ro wait
+	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/efs /mnt/vendor/efs ro wait
+	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/sec_efs /efs ro wait
+
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice

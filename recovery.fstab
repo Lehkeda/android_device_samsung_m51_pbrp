@@ -17,8 +17,7 @@
 
 /boot				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/boot                 flags=backup=1;display="boot";flashimg=1
 /recovery 			emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/recovery              flags=backup=1;display="recovery";flashimg=1
-#/metadata 			ext4	/dev/block/platform/soc/1d84000.ufshc/by-name/metadata              flags=backup=1;display="Metadata"
-/data	 			f2fs	/dev/block/platform/soc/1d84000.ufshc/by-name/userdata	     		flags=encryptable=footer;length=-32768;fileencryption=ice:aes-256-cts
+/data	 			f2fs	/dev/block/platform/soc/1d84000.ufshc/by-name/userdata	     		flags=encryptable=footer;length=-32768;fileencryption=ice;
 /cache				ext4	/dev/block/platform/soc/1d84000.ufshc/by-name/cache                 flags=wipeingui;wipeduringfactoryreset
 
 # Add misc for GOTA
