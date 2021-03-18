@@ -15,6 +15,8 @@
 #
 DEVICE_PATH := device/samsung/m51
 
+PLATFORM_VERSION := 11
+
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
