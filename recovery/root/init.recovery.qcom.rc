@@ -26,7 +26,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import /init.recovery.qcom_decrypt.rc
 import /init.recovery.logd.rc
 
 on early-init
