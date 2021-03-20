@@ -20,18 +20,8 @@ DEVICE_PATH := device/samsung/m51
 PRODUCT_PLATFORM := sm6150
 
 # Define Dynamic Partition support
-PRODUCT_TARGET_VNDK_VERSION := 29
-PRODUCT_SHIPPING_API_LEVEL := 29
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_SUPER_PARTITION := false
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service \
-    android.hardware.boot@1.0-impl-wrapper.recovery \
-    android.hardware.boot@1.0-impl-wrapper \
-    android.hardware.boot@1.0-impl.recovery 
 
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -39,9 +29,9 @@ PRODUCT_PACKAGES += \
     fastbootd
 
 # Build qcom FBE decryption
-PRODUCT_PACKAGES += \
-    qcom_decrypt \
-    qcom_decrypt_fbe
+#PRODUCT_PACKAGES += \
+#    qcom_decrypt \
+#    qcom_decrypt_fbe
 
 # Build tzdata
 PRODUCT_PACKAGES += \
