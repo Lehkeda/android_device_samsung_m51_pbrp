@@ -4,21 +4,15 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # mount point       fstype    device                                                                flags
-/super    			ext4    /dev/block/by-name/super         		flags=backup=0;display="super";
-/super_image     	emmc    /dev/block/by-name/super        		flags=backup=1;flashimg=1;
-/system_root		ext4	/dev/block/mapper/system                flags=backup=0;display="system";subpartitionof=/super;
-/system_ext		ext4 	system_ext
-/system_image 		emmc	/dev/block/mapper/system                flags=backup=1;flashimg=1;subpartitionof=/super_image;
-/vendor 			ext4	/dev/block/mapper/vendor                flags=backup=0;display="vendor";subpartitionof=/super;
-/vendor_image   	emmc    /dev/block/mapper/vendor         		flags=backup=1;flashimg=1;subpartitionof=/super_image;
-/odm 				ext4	/dev/block/mapper/odm                   flags=backup=0;display="odm";subpartitionof=/super;
-/odm_image			emmc	/dev/block/mapper/odm                   flags=backup=1;flashimg=1;subpartitionof=/super_image;
-/product 			ext4	/dev/block/mapper/product               flags=backup=0;display="Product";subpartitionof=/super;
-/product_image  	emmc    /dev/block/mapper/product        		flags=backup=1;flashimg;subpartitionof=/super_image;
+odm /odm ext4
+product /product ext4
+/system ext4 /system
+/system_image   emmc /dev/block/mapper/system                flags=backup=1;flashimg=1;display="system image";
+vendor /vendor ext4
 
 /boot				emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/boot                 flags=backup=1;display="boot";flashimg=1
 /recovery 			emmc	/dev/block/platform/soc/1d84000.ufshc/by-name/recovery              flags=backup=1;display="recovery";flashimg=1
-/data	 			f2fs	/dev/block/platform/soc/1d84000.ufshc/by-name/userdata	     		flags=encryptable=footer;length=-32768;fileencryption=ice;
+/data	 			f2fs	/dev/block/platform/soc/1d84000.ufshc/by-name/userdata	     		flags=encryptable=footer,length=-16384;
 /cache				ext4	/dev/block/platform/soc/1d84000.ufshc/by-name/cache                 flags=wipeingui;wipeduringfactoryreset
 
 # Add misc for GOTA
