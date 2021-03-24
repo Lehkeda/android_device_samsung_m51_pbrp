@@ -15,7 +15,7 @@
 #
 DEVICE_PATH := device/samsung/m51
 
-PLATFORM_VERSION := 11
+#PLATFORM_VERSION := 11
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -116,6 +116,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2021-03-01
+VENDOR_SECURITY_PATCH := 2099-12-31
+PLATFORM_VERSION := 16.1.0
 
 # Crypto
 #TW_INCLUDE_CRYPTO := true
